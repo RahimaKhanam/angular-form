@@ -1,0 +1,51 @@
+<div class="my-3 text-center">
+    <button type="button" routerLink="/create" class="btn btn-success">Add User</button>
+</div>
+<div class="row">
+    <div *ngFor="let data of userList" class="col-md-3">
+        <div class="card my-3">
+            <div class="img-div">
+                <img class="card-img-top" src="../../../assets/user.png" alt="User Avatar">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title text-center m-0">{{data.name}}</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span>Username :</span> {{data.username}}</li>
+                <li class="list-group-item"><span>Email :</span> {{data.email}}</li>
+                <li class="list-group-item"><span>Phone : </span>{{data.phone}}</li>
+                <li class="list-group-item"><span>Address : </span>{{data.address.city}}, {{data.address.street}},
+                    {{data.address.zipcode}}</li>
+                <li class="list-group-item"><span>Website : </span>{{data.website}}</li>
+            </ul>
+            <div class="card-footer text-center">
+                <!-- Edit Button -->
+                <button type="button" (click)="editUser(data.id)" class="btn btn-primary">Edit</button>
+                &nbsp;&nbsp;&nbsp;
+                <!-- Delete Button -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal" (click)="openDeleteModal(data.id)">Delete</button>
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="deleteModalLabel">Warning !</h1>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this item?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #modal>Close</button>
+                                <button type="button" class="btn btn-danger" (click)="delete()" >Confirm Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

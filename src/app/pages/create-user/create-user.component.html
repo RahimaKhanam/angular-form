@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <mat-icon (click)="goBack()" style="cursor: pointer;">keyboard_backspace</mat-icon>
+            <div class="card-body">
+                <div class="two alt-two">
+                    <h1>{{title}}
+                        <span>Please fill the given form.</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <form class="form" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && create()" novalidate>
+            <div class="row">
+                <div class="form-group col-md-6 mb-4">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" [(ngModel)]="userForm.name" class="form-control" id="name"
+                        required />
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" [(ngModel)]="userForm.username" class="form-control"
+                        id="username" required />
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" [pattern]="emailPattern" name="email" [(ngModel)]="userForm.email"
+                        class="form-control" id="email" required />
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" [pattern]="mobNumberPattern" [attr.maxlength]="10" name="phone"
+                        [(ngModel)]="userForm.phone" class="form-control" id="phone" required />
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <label for="website" class="form-label">Website</label>
+                    <input type="text" name="website" [(ngModel)]="userForm.website" class="form-control" id="website"
+                        required />
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <div for="city" class="form-label">Address</div>
+
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-2 col-form-label">City &nbsp;:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="city" [(ngModel)]="userForm.address.city" class="form-control"
+                                id="city" required />
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-2 col-form-label">Street&nbsp;:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="street" [(ngModel)]="userForm.address.street" class="form-control"
+                                id="street" required />
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-2 col-form-label">Zipcode&nbsp;:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="zipcode" [(ngModel)]="userForm.address.zipcode"
+                                class="form-control" id="zipcode" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button *ngIf="editMode == false" type="button" [disabled]="!registerForm.form.valid" (click)="create()"
+                class="col-md-12 btn btn-primary my-3">CREATE</button>
+            <button *ngIf="editMode == true" type="button" (click)="update()"
+                class="btn btn-primary my-3">UPDATE</button>
+        </form>
+    </div>
+</div>
